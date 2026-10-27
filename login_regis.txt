@@ -18,4 +18,11 @@ setekah tombol wiwiti ada teks "sudah mempunyai akun ?  login disini" teks mengg
 
 
 
+----- ketika berhasil login --------
+buatkan komponen 
+
+
+
+
+
 

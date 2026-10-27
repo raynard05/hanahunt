@@ -5,10 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
 import FullscreenPrompt from "@/components/fullscreen/FullscreenPrompt";
+import BubbleEffect from "@/components/bubble/BubbleEffect";
 import { supabase } from "@/lib/supabaseClient";
 import "./regis.css";
-
-
 
 export default function RegisPage() {
   const [namaLengkap, setNamaLengkap] = useState("");
@@ -90,6 +89,9 @@ export default function RegisPage() {
   return (
     <main className="hh-regis-viewport">
       <FullscreenPrompt />
+
+      {/* Gelembung berterbangan di panel kiri */}
+      <BubbleEffect />
 
       {/* Panel Kanan */}
       <section className="hh-regis-right-panel">

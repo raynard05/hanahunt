@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
 import FullscreenPrompt from "@/components/fullscreen/FullscreenPrompt";
 import FloatingIcons from "@/components/floating/FloatingIcons";
+import BubbleEffect from "@/components/bubble/BubbleEffect";
 import { supabase } from "@/lib/supabaseClient";
 import "./login.css";
 
@@ -64,6 +65,9 @@ export default function LoginPage() {
   return (
     <main className="hh-login-viewport">
       <FullscreenPrompt />
+
+      {/* Gelembung berterbangan di panel kiri */}
+      <BubbleEffect />
 
       {/* Floating Animated Icons (Wayang, Tugu, Pelampung) */}
       <FloatingIcons
