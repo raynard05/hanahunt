@@ -1,0 +1,261 @@
+/* ==========================================================================
+   FULLSCREEN PROMPT COMPONENT STYLES - HANA HUNT
+   Rules:
+   - File terpisah dengan tsx logic (fullscreen-prompt.css)
+   - Menggunakan satuan vh / vw secara ketat untuk zoom-lock
+   - Selector khusus dengan prefix hh-fs-*
+   - Responsif landscape mobile, laptop sedang, laptop besar & monitor
+   - Tanpa satuan px pada komponen selain background
+   ========================================================================== */
+
+.hh-fs-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 15, 29, 0.86);
+  backdrop-filter: blur(1vw);
+  -webkit-backdrop-filter: blur(1vw);
+  cursor: pointer;
+  user-select: none;
+  animation: hhFsFadeIn 0.3s ease-out forwards;
+}
+
+.hh-fs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.2vh;
+  text-align: center;
+  pointer-events: auto;
+}
+
+/* Image wrapper */
+.hh-fs-patung-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 13vw;
+  height: 13vw;
+  border-radius: 999vw;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, rgba(245, 158, 11, 0) 70%);
+
+}
+
+.hh-fs-patung-img {
+  width: 11vw;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 1.2vh 2.5vh rgba(0, 0, 0, 0.6));
+
+}
+
+/* Text & badge area */
+.hh-fs-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2vh;
+}
+
+.hh-fs-badge {
+  margin-top: 3vh;
+  background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+  color: #ffffff;
+  padding: 0.8vh 2.4vw;
+  border-radius: 999vw;
+  border: 0.2vw solid #fef3c7;
+  box-shadow: 0 0.8vh 2vh rgba(217, 119, 6, 0.45);
+  font-family: var(--font-rubik), sans-serif;
+  font-size: 1.35vw;
+  font-weight: 900;
+  letter-spacing: 0.05vw;
+  text-transform: uppercase;
+  text-shadow: 0.12vw 0.12vw 0 rgba(146, 64, 14, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 0.8vw;
+  animation: hhFsButtonPulse 1.8s ease-in-out infinite;
+}
+
+.hh-fs-icon-expand {
+  width: 1.4vw;
+  height: 1.4vw;
+}
+
+.hh-fs-subtext {
+  margin: 0;
+  color: #e5e7eb;
+  font-family: var(--font-rubik), sans-serif;
+  font-size: 0.95vw;
+  font-weight: 600;
+  letter-spacing: 0.02vw;
+  text-shadow: 0 0.2vh 0.8vh rgba(0, 0, 0, 0.8);
+}
+
+.hh-fs-hint {
+  margin: 0;
+  color: #9ca3af;
+  font-family: var(--font-rubik), sans-serif;
+  font-size: 0.75vw;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+/* Keyframes */
+@keyframes hhFsFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hhFsPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes hhFsBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-1.2vh);
+  }
+}
+
+@keyframes hhFsButtonPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0.8vh 2vh rgba(217, 119, 6, 0.45);
+  }
+
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 1.2vh 3vh rgba(245, 158, 11, 0.65);
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS (AIRULE: Mobile, Laptop Sedang, Laptop Besar / Monitor)
+   Semua orientasi landscape, dilindungi guard touch coarse untuk mobile
+   ========================================================================== */
+
+/* Laptop Sedang (1024px - 1440px) */
+@media screen and (min-width: 64em) and (max-width: 90em) {
+  .hh-fs-patung-wrapper {
+    width: 14vw;
+    height: 14vw;
+  }
+
+  .hh-fs-patung-img {
+    width: 12vw;
+  }
+
+  .hh-fs-badge {
+    font-size: 1.4vw;
+    padding: 0.9vh 2.6vw;
+  }
+
+  .hh-fs-icon-expand {
+    width: 1.5vw;
+    height: 1.5vw;
+  }
+
+  .hh-fs-subtext {
+    font-size: 1vw;
+  }
+
+  .hh-fs-hint {
+    font-size: 0.8vw;
+  }
+}
+
+/* Layar Besar / Monitor Desktop (> 1440px) */
+@media screen and (min-width: 90.01em) {
+  .hh-fs-patung-wrapper {
+    width: 12vw;
+    height: 12vw;
+  }
+
+  .hh-fs-patung-img {
+    width: 10vw;
+  }
+
+  .hh-fs-badge {
+    font-size: 1.2vw;
+    padding: 0.8vh 2.2vw;
+  }
+
+  .hh-fs-icon-expand {
+    width: 1.3vw;
+    height: 1.3vw;
+  }
+
+  .hh-fs-subtext {
+    font-size: 0.85vw;
+  }
+
+  .hh-fs-hint {
+    font-size: 0.7vw;
+  }
+}
+
+/* Mobile Landscape Guarded (Touch Coarse Only) */
+@media screen and (max-width: 63.99em) and (orientation: landscape) and (pointer: coarse) {
+  .hh-fs-container {
+    gap: 1.6vh;
+  }
+
+  .hh-fs-patung-wrapper {
+    width: 16vw;
+    height: 16vw;
+  }
+
+  .hh-fs-patung-img {
+    width: 14vw;
+  }
+
+  .hh-fs-badge {
+    font-size: 1.8vw;
+    padding: 1vh 3vw;
+    border-width: 0.3vw;
+  }
+
+  .hh-fs-icon-expand {
+    width: 2vw;
+    height: 2vw;
+  }
+
+  .hh-fs-subtext {
+    font-size: 1.3vw;
+  }
+
+  .hh-fs-hint {
+    font-size: 1vw;
+  }
+}

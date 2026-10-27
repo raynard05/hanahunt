@@ -1,0 +1,21 @@
+-buatkan form login dan regis yang mirip dengan  gambar ss referensi dari desainer 
+- letakkan di panel kanan 
+- untuk icon per form nya ada di assets assets/login_regis/username,nama lengkap , klas dll
+- tombol wiwiti dari assets/login_regis/wiwitii.webp sebagai tombol login nya 
+- env ada di .env
+-icon 
+untuk penataan urutan form di halaman login
+username dan password saja 
+setekah tombol wiwiti ada teks "belum mempunyai akun ?  daftar disini" teks menggunakan font rubik one 
+
+
+
+untuk penataan urutan form di halaman registrasi 
+nama lengkap,username,kelas , absen , password 
+setekah tombol wiwiti ada teks "sudah mempunyai akun ?  login disini" teks menggunakan font rubik one 
+
+
+
+
+
+

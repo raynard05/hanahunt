@@ -1,0 +1,379 @@
+/* ==========================================================================
+   LOGIN PAGE STYLES - HANA HUNT
+   - Konsep Gambar 3: Kartu tablet bar utuh [Icon | Label | Inner Input Pill]
+   - Tema Hijau (Nature/Stone Green) serasi dengan background daun Coban Rondo
+   - Zoom-locked, unit vw/vh responsif (AIRULE.TXT Point 16)
+   - Ukuran stabil dan terkunci konstan di semua level zoom
+   ========================================================================== */
+
+.hh-login-viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #1e3a5f;
+  background-image: url('/assets/login_regis/bg_login.webp');
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  user-select: none;
+}
+
+/* Panel Kanan - diposisikan pas di bawah judul LOGIN */
+.hh-login-right-panel {
+  position: absolute;
+  top: 0;
+  right: -2vw;
+  width: 50vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-sizing: border-box;
+  padding-top: 28vh;
+  padding-left: 5vw;
+}
+
+/* Form Container */
+.hh-login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.5vh;
+  width: 32vw;
+}
+
+/* ====== Tablet Bar Container (Persis Konsep Gambar 3) ====== */
+.hh-form-bar {
+  position: relative;
+  width: 100%;
+  height: 10.5vh;
+  background: linear-gradient(180deg, #e1edd9 0%, #cee3c4 48%, #bad7b0 100%);
+  border: 0.22vw solid #21471c;
+  border-radius: 1vw;
+  box-shadow:
+    0 0.6vh 1.4vh rgba(0, 0, 0, 0.45),
+    inset 0 0.15vh 0.3vh rgba(255, 255, 255, 0.85),
+    inset 0 -0.15vh 0.3vh rgba(27, 58, 23, 0.2);
+  display: flex;
+  align-items: center;
+  padding: 0 0.6vw 0 0.8vw;
+  box-sizing: border-box;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.hh-form-bar:focus-within {
+  transform: translateY(-0.15vh);
+  box-shadow:
+    0 0.8vh 1.8vh rgba(0, 0, 0, 0.5),
+    0 0 0.8vw rgba(74, 222, 128, 0.35),
+    inset 0 0.15vh 0.3vh rgba(255, 255, 255, 0.9);
+}
+
+/* Icon Wrap di Sisi Kiri */
+.hh-form-icon-wrap {
+  flex-shrink: 0;
+  transform: translateX(-2.5vw);
+  width: 7vw;
+  height: 7vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: -1.2vw;
+  filter: drop-shadow(0 0.35vh 0.7vh rgba(0, 0, 0, 0.4));
+}
+
+.hh-form-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Label Teks (USERNAME, PASSWORD, dll) */
+.hh-form-label {
+  flex-shrink: 0;
+  font-family: var(--font-rubik), Impact, sans-serif;
+  font-weight: 800;
+  font-size: 1.15vw;
+  color: #21471c;
+  text-transform: uppercase;
+  letter-spacing: 0.05vw;
+  text-shadow:
+    0.08vw 0.08vw 0 rgba(255, 255, 255, 0.75),
+    -0.05vw -0.05vw 0 rgba(18, 40, 15, 0.25);
+  margin-right: 0.8vw;
+  min-width: 7.5vw;
+  cursor: pointer;
+}
+
+/* Inner Input Pill (Kotak Input Putih/Hijau ala Gambar 3) */
+.hh-form-input-pill {
+  flex: 1;
+  height: 7.5vh;
+  background: #f8fbf7;
+  border: 0.2vw solid #2d6b28;
+  border-radius: 0.7vw;
+  box-shadow:
+    inset 0 0.25vh 0.5vh rgba(0, 0, 0, 0.12),
+    0 0.2vh 0.4vh rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  padding: 0 0.6vw;
+  box-sizing: border-box;
+  transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
+}
+
+.hh-form-input-pill:focus-within {
+  border-color: #15803d;
+  background: #ffffff;
+  box-shadow:
+    inset 0 0.2vh 0.4vh rgba(0, 0, 0, 0.08),
+    0 0 0.5vw rgba(34, 197, 94, 0.45);
+}
+
+.hh-form-input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-rubik), sans-serif;
+  font-size: 1.1vw;
+  font-weight: 700;
+  color: #11290e;
+  box-sizing: border-box;
+}
+
+.hh-form-input::placeholder {
+  color: rgba(33, 71, 28, 0.55);
+  font-weight: 600;
+  font-size: 0.92vw;
+  letter-spacing: 0.02vw;
+}
+
+/* Tombol Mata (Toggle Password) */
+.hh-form-eye-btn {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0.4vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2d6b28;
+  opacity: 0.75;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.hh-form-eye-btn:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+.hh-form-eye-icon {
+  width: 1.4vw;
+  height: 1.4vw;
+}
+
+/* Tombol Wiwiti */
+.hh-login-btn-wiwiti {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 3.5vh;
+  width: 24vw;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.hh-login-btn-wiwiti:hover {
+  transform: scale(1.06);
+  filter: brightness(1.1);
+}
+
+.hh-login-btn-wiwiti:active {
+  transform: scale(0.96);
+  filter: brightness(0.92);
+}
+
+.hh-login-wiwiti-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0.8vh 1.6vh rgba(0, 0, 0, 0.5));
+}
+
+/* Teks Switch Akun */
+.hh-login-switch-text {
+  margin-top: 3vh;
+  padding-right: 1.8vw;
+  font-family: var(--font-rubik-one), Impact, sans-serif;
+  font-size: 1.2vw;
+  letter-spacing: 0.06vw;
+  color: #fef08a;
+  text-transform: uppercase;
+  text-shadow:
+    0.15vw 0.15vw 0 #14532d,
+    -0.15vw -0.15vw 0 #14532d,
+    0.15vw -0.15vw 0 #14532d,
+    -0.15vw 0.15vw 0 #14532d,
+    0 0.4vh 0.8vh rgba(0, 0, 0, 0.8);
+  text-align: center;
+}
+
+.hh-login-switch-link {
+  color: #ffffff;
+  margin-left: 0.6vw;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.hh-login-switch-link:hover {
+  color: #86efac;
+}
+
+/* Status Pesan Error/Sukses */
+.hh-login-msg-box {
+  margin-top: 1.5vh;
+  padding: 0.8vh 1.6vw;
+  border-radius: 0.8vw;
+  font-family: var(--font-rubik), sans-serif;
+  font-size: 0.95vw;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 0.4vh 1vh rgba(0, 0, 0, 0.35);
+}
+
+.hh-login-msg-error {
+  background: rgba(220, 38, 38, 0.92);
+  color: #ffffff;
+  border: 0.15vw solid #fca5a5;
+}
+
+.hh-login-msg-success {
+  background: rgba(22, 163, 74, 0.92);
+  color: #ffffff;
+  border: 0.15vw solid #86efac;
+}
+
+/* ==========================================================================
+   ZOOM-LOCK & RESPONSIVE (AIRULE.TXT Aturan 16)
+   - Nilai proporsi vw/vh konsisten di semua layar desktop/laptop
+   - Mobile landscape dilindungi dengan guard (pointer: coarse)
+   ========================================================================== */
+
+/* Laptop & Monitor - Dikunci sama persis agar tidak loncat saat zoom */
+@media screen and (min-width: 64em) {
+  .hh-login-right-panel {
+    width: 50vw;
+    padding-top: 28vh;
+    padding-left: 5vw;
+  }
+
+  .hh-login-form {
+    width: 32vw;
+    gap: 3.5vh;
+  }
+
+  .hh-form-bar {
+    height: 10.5vh;
+  }
+
+  .hh-form-icon-wrap {
+    transform: translateX(-2.5vw);
+    width: 7vw;
+    height: 7vw;
+    margin-right: -1.2vw;
+  }
+
+  .hh-form-label {
+    font-size: 1.15vw;
+    min-width: 7.5vw;
+  }
+
+  .hh-form-input-pill {
+    height: 7.5vh;
+  }
+
+  .hh-form-input {
+    font-size: 1.2vw;
+  }
+
+  .hh-login-btn-wiwiti {
+    width: 24vw;
+    margin-top: 3.5vh;
+  }
+
+  .hh-login-switch-text {
+    font-size: 1.2vw;
+    margin-top: 3vh;
+    padding-right: 1.8vw;
+  }
+}
+
+/* Mobile Landscape Guarded (Hanya untuk perangkat touch/HP asli) */
+@media screen and (max-width: 63.99em) and (orientation: landscape) and (pointer: coarse) {
+  .hh-login-right-panel {
+    width: 50vw;
+    padding-top: 28vh;
+    padding-left: 7vw;
+  }
+
+  .hh-login-form {
+    width: 34vw;
+    gap: 5.5vh;
+  }
+
+  .hh-form-bar {
+    height: 11vh;
+  }
+
+  .hh-form-icon-wrap {
+    transform: translateX(-2.8vw);
+    width: 7.5vw;
+    height: 7.5vw;
+    margin-right: -1.2vw;
+  }
+
+  .hh-form-label {
+    font-size: 1.2vw;
+    min-width: 8vw;
+  }
+
+  .hh-form-input-pill {
+    height: 7.8vh;
+    border-width: 0.25vw;
+  }
+
+  .hh-form-input {
+    font-size: 1.25vw;
+  }
+
+  .hh-form-eye-icon {
+    width: 1.8vw;
+    height: 1.8vw;
+  }
+
+  .hh-login-btn-wiwiti {
+    width: 24vw;
+    margin-top: 1vh;
+  }
+
+  .hh-login-switch-text {
+    font-size: 1.25vw;
+    margin-top: 2.5vh;
+    padding-right: 3vw;
+  }
+}

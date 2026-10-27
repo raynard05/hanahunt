@@ -1,0 +1,110 @@
+/* ==========================================================================
+   FLOATING ICONS COMPONENT STYLES - HANA HUNT
+   Rules:
+   - Terpisah antara TSX dan CSS (AIRULE.TXT)
+   - Menggunakan satuan vh / vw secara ketat untuk zoom-lock
+   - Selector unik berawalan .hh-float-*
+   - Animasi mengambang (bobbing / floating) halus ala game petualangan
+   - Pointer-events: none agar tidak menghalangi klik ke elemen form
+   ========================================================================== */
+
+.hh-float-container {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+/* Item Wrapper */
+.hh-float-item {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto; /* Bisa interaktif hover */
+  user-select: none;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+
+.hh-float-item:hover {
+  filter: brightness(1.15) scale(1.05);
+}
+
+.hh-float-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   ANIMASI FLOATING
+   Variasi kecepatan dan arah melayang agar terasa dinamis dan alami
+   ========================================================================== */
+
+/* Wayang: Float lambat dengan sedikit rotasi */
+.hh-float-wayang {
+  animation: hhFloatBob1 4.5s ease-in-out infinite alternate;
+}
+
+/* Tugu: Float lembut dengan jeda berbeda */
+.hh-float-tugu {
+  animation: hhFloatBob2 5.2s ease-in-out infinite alternate;
+}
+
+/* Pelampung: Float dengan goyangan air (sedikit tilt) */
+.hh-float-pelampung {
+  animation: hhFloatBob3 3.8s ease-in-out infinite alternate;
+}
+
+@keyframes hhFloatBob1 {
+  0% {
+    transform: translateY(0) rotate(var(--base-rot, 0deg));
+  }
+  50% {
+    transform: translateY(-1.4vh) rotate(calc(var(--base-rot, 0deg) - 2deg));
+  }
+  100% {
+    transform: translateY(-2.8vh) rotate(calc(var(--base-rot, 0deg) + 1.5deg));
+  }
+}
+
+@keyframes hhFloatBob2 {
+  0% {
+    transform: translateY(0) rotate(var(--base-rot, 0deg));
+  }
+  50% {
+    transform: translateY(-1.8vh) rotate(calc(var(--base-rot, 0deg) + 2deg));
+  }
+  100% {
+    transform: translateY(-3.2vh) rotate(calc(var(--base-rot, 0deg) - 1deg));
+  }
+}
+
+@keyframes hhFloatBob3 {
+  0% {
+    transform: translateY(0) rotate(calc(var(--base-rot, 0deg) - 3deg));
+  }
+  50% {
+    transform: translateY(-1.2vh) rotate(calc(var(--base-rot, 0deg) + 2.5deg));
+  }
+  100% {
+    transform: translateY(-2.5vh) rotate(calc(var(--base-rot, 0deg) - 1.5deg));
+  }
+}
+
+/* ==========================================================================
+   ZOOM-LOCK & RESPONSIVE (AIRULE.TXT Aturan 16)
+   - Ukuran dan posisi tetap proporsional menggunakan vw/vh
+   - Mobile landscape dilindungi dengan guard (pointer: coarse)
+   ========================================================================== */
+
+@media screen and (max-width: 63.99em) and (orientation: landscape) and (pointer: coarse) {
+  .hh-float-item {
+    /* Sedikit penyesuaian skala pada perangkat mobile landscape jika diperlukan */
+    filter: drop-shadow(0 0.5vh 1vh rgba(0, 0, 0, 0.45));
+  }
+}
