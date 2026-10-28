@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
 import FullscreenPrompt from "@/components/fullscreen/FullscreenPrompt";
 import BubbleEffect from "@/components/bubble/BubbleEffect";
@@ -10,6 +11,7 @@ import { supabase } from "@/lib/supabaseClient";
 import "./regis.css";
 
 export default function RegisPage() {
+  const router = useRouter();
   const [namaLengkap, setNamaLengkap] = useState("");
   const [username, setUsername] = useState("");
   const [kelas, setKelas] = useState("");
@@ -53,15 +55,19 @@ export default function RegisPage() {
         return;
       }
 
-      const { error } = await supabase.from("user_account").insert([
-        {
-          nama_lengkap: cleanNama,
-          username: cleanUsername,
-          kelas: cleanKelas || null,
-          nomor_absen: parsedAbsen,
-          kata_sandi: kataSandi,
-        },
-      ]);
+      const { data: newUser, error } = await supabase
+        .from("user_account")
+        .insert([
+          {
+            nama_lengkap: cleanNama,
+            username: cleanUsername,
+            kelas: cleanKelas || null,
+            nomor_absen: parsedAbsen,
+            kata_sandi: kataSandi,
+          },
+        ])
+        .select("id, nama_lengkap, username, kelas, nomor_absen")
+        .single();
 
       if (error) {
         setMsg({ text: `Gagal ndaftar: ${error.message}`, type: "error" });
@@ -70,9 +76,20 @@ export default function RegisPage() {
       }
 
       setMsg({
-        text: "Pendaftaran kasil! Ayo saiki mlebu nganggo akun anyarmu.",
+        text: "Pendaftaran kasil! Ayo saiki mlebu...",
         type: "success",
       });
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("hana_user", JSON.stringify(newUser || {
+          nama_lengkap: cleanNama,
+          username: cleanUsername,
+          kelas: cleanKelas,
+          nomor_absen: parsedAbsen,
+        }));
+      }
+      setTimeout(() => {
+        router.push("/menu");
+      }, 700);
       setNamaLengkap("");
       setUsername("");
       setKelas("");

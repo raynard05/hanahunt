@@ -1,0 +1,9 @@
+- buatkan halaman menu dengan awal bg nya dulu assets/menu , ini adalah halaman setelah berhasil login atau registrasi
+- beri icon profile dari assets/main di pojok atas kiri 
+- icon sound on dan off ada di kanan atas bergantian  (jadikan komponen sendiri dan render it for global , except login and regis )
+- beri icon log out di pojok bawah kanan 
+
+
+
+
+

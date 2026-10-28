@@ -1,0 +1,331 @@
+/* ==========================================================================
+   MENU PAGE STYLES - HANA HUNT
+   Rules:
+   - File terpisah logic dan css (AIRULE.TXT)
+   - Menggunakan satuan vh / vw secara ketat untuk zoom-lock
+   - Selector unik berawalan .hh-menu-*
+   - Responsif landscape mobile, laptop sedang, laptop besar & monitor
+   ========================================================================== */
+
+.hh-menu-viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #1e3a5f;
+  background-image: url('/assets/menus/bg.webp');
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  user-select: none;
+}
+
+/* ==========================================================================
+   HEADER / TOP BAR ACTIONS
+   - Pojok Kiri Atas: Icon Profile (+ Nama Pengguna)
+   - Pojok Kanan Atas: Sound On / Off Toggle
+   ========================================================================== */
+
+/* Pojok Kiri Atas - Tombol Profil */
+.hh-menu-profile-btn {
+  position: absolute;
+  top: 3vh;
+  left: 2.5vw;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 0.8vw;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.hh-menu-profile-btn:hover {
+  transform: scale(1.08);
+}
+
+.hh-menu-profile-btn:active {
+  transform: scale(0.94);
+}
+
+.hh-menu-profile-icon-wrap {
+  width: 6vw;
+  height: 6vw;
+  min-width: 6vw;
+  min-height: 6vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0.5vh 1vh rgba(0, 0, 0, 0.5));
+}
+
+.hh-menu-profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Label Nama Profil di Samping Icon */
+.hh-menu-profile-badge {
+  background: linear-gradient(180deg, #e1edd9 0%, #bad7b0 100%);
+  border: 0.2vw solid #21471c;
+  border-radius: 0.7vw;
+  padding: 0.6vh 3vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow:
+    0 0.4vh 1vh rgba(0, 0, 0, 0.4),
+    inset 0 0.15vh 0.3vh rgba(255, 255, 255, 0.8);
+}
+
+.hh-menu-profile-title {
+  font-family: var(--font-rubik), sans-serif;
+  font-weight: 700;
+  font-size: 0.75vw;
+  color: #14532d;
+  text-transform: uppercase;
+  letter-spacing: 0.04vw;
+  line-height: 1;
+}
+
+.hh-menu-profile-name {
+  font-family: var(--font-rubik-one), Impact, sans-serif;
+  font-size: 1.05vw;
+  color: #11290e;
+  letter-spacing: 0.05vw;
+  line-height: 1.2;
+  margin-top: 0.2vh;
+  max-width: 12vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Pojok Kanan Atas - Sound Toggle */
+.hh-menu-sound-wrap {
+  position: absolute;
+  top: 3vh;
+  right: 2.5vw;
+  z-index: 20;
+}
+
+/* ==========================================================================
+   FOOTER / BOTTOM ACTIONS
+   - Pojok Kanan Bawah: Tombol Logout
+   ========================================================================== */
+
+.hh-menu-logout-btn {
+  position: absolute;
+  bottom: 3vh;
+  right: 2.5vw;
+  z-index: 20;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6vw;
+  user-select: none;
+  transition: transform 0.18s ease, filter 0.18s ease;
+  filter: drop-shadow(0 0.5vh 1vh rgba(0, 0, 0, 0.5));
+}
+
+.hh-menu-logout-btn:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0.7vh 1.4vh rgba(0, 0, 0, 0.6)) brightness(1.1);
+}
+
+.hh-menu-logout-btn:active {
+  transform: scale(0.94);
+}
+
+.hh-menu-logout-icon-wrap {
+  width: 6vw;
+  height: 6vw;
+  min-width: 6vw;
+  min-height: 6vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hh-menu-logout-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Modal Konfirmasi Logout */
+.hh-menu-modal-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 15, 29, 0.8);
+  backdrop-filter: blur(0.6vw);
+  -webkit-backdrop-filter: blur(0.6vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.hh-menu-modal-card {
+  position: relative;
+  background: linear-gradient(180deg, #e1edd9 0%, #cee3c4 50%, #bad7b0 100%);
+  border: 0.25vw solid #21471c;
+  border-radius: 1.2vw;
+  padding: 3.5vh 3vw;
+  width: 32vw;
+  text-align: center;
+  box-shadow:
+    0 1vh 2.5vh rgba(0, 0, 0, 0.6),
+    inset 0 0.2vh 0.4vh rgba(255, 255, 255, 0.9);
+}
+
+.hh-menu-modal-title {
+  font-family: var(--font-rubik-one), Impact, sans-serif;
+  font-size: 1.4vw;
+  color: #21471c;
+  text-transform: uppercase;
+  margin-bottom: 1.5vh;
+  text-shadow: 0.08vw 0.08vw 0 rgba(255, 255, 255, 0.7);
+}
+
+.hh-menu-modal-desc {
+  font-family: var(--font-rubik), sans-serif;
+  font-weight: 600;
+  font-size: 1.05vw;
+  color: #11290e;
+  line-height: 1.4;
+  margin-bottom: 3vh;
+}
+
+.hh-menu-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5vw;
+}
+
+.hh-menu-modal-btn-cancel {
+  background: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 100%);
+  border: 0.18vw solid #475569;
+  border-radius: 0.6vw;
+  padding: 1.2vh 2vw;
+  font-family: var(--font-rubik-one), Impact, sans-serif;
+  font-size: 1vw;
+  color: #334155;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 0.15s, filter 0.15s;
+}
+
+.hh-menu-modal-btn-cancel:hover {
+  transform: scale(1.05);
+}
+
+.hh-menu-modal-btn-confirm {
+  background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+  border: 0.18vw solid #991b1b;
+  border-radius: 0.6vw;
+  padding: 1.2vh 2vw;
+  font-family: var(--font-rubik-one), Impact, sans-serif;
+  font-size: 1vw;
+  color: #ffffff;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 0.4vh 1vh rgba(220, 38, 38, 0.4);
+  transition: transform 0.15s, filter 0.15s;
+}
+
+.hh-menu-modal-btn-confirm:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* ==========================================================================
+   ZOOM-LOCK & RESPONSIVE (AIRULE.TXT Aturan 16)
+   ========================================================================== */
+
+/* Laptop & Monitor */
+@media screen and (min-width: 64em) {
+  .hh-menu-profile-icon-wrap {
+    width: 6vw;
+    height: 6vw;
+    min-width: 6vw;
+    min-height: 6vw;
+  }
+
+  .hh-menu-logout-icon-wrap {
+    width: 6vw;
+    height: 6vw;
+    min-width: 6vw;
+    min-height: 6vw;
+  }
+}
+
+/* Mobile Landscape Guarded */
+@media screen and (max-width: 63.99em) and (orientation: landscape) and (pointer: coarse) {
+  .hh-menu-profile-btn {
+    top: 3vh;
+    left: 3vw;
+  }
+
+  .hh-menu-profile-icon-wrap {
+    width: 6vw;
+    height: 6vw;
+    min-width: 6vw;
+    min-height: 6vw;
+  }
+
+  .hh-menu-profile-name {
+    font-size: 1.3vw;
+    max-width: 15vw;
+  }
+
+  .hh-menu-profile-title {
+    font-size: 0.9vw;
+  }
+
+  .hh-menu-sound-wrap {
+    top: 3vh;
+    right: 3vw;
+  }
+
+  .hh-menu-logout-btn {
+    bottom: 3vh;
+    right: 3vw;
+  }
+
+  .hh-menu-logout-icon-wrap {
+    width: 6vw;
+    height: 6vw;
+    min-width: 6vw;
+    min-height: 6vw;
+  }
+
+  .hh-menu-modal-card {
+    width: 42vw;
+  }
+
+  .hh-menu-modal-title {
+    font-size: 1.6vw;
+  }
+
+  .hh-menu-modal-desc {
+    font-size: 1.2vw;
+  }
+
+  .hh-menu-modal-btn-cancel,
+  .hh-menu-modal-btn-confirm {
+    font-size: 1.2vw;
+  }
+}
