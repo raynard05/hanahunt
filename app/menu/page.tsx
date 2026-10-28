@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import FullscreenPrompt from "@/components/fullscreen/FullscreenPrompt";
 import AudioToggle from "@/components/audio/AudioToggle";
 import Coverflow from "@/components/coverflow/Coverflow";
+import MistEffect from "@/components/mist/MistEffect";
 import "./menu.css";
 
 interface UserAccount {
@@ -111,6 +112,9 @@ export default function MenuPage() {
           />
         </div>
       </button>
+
+      {/* Efek Embun Air Terjun - Dirender Paling Depan/Atas Layar */}
+      <MistEffect />
 
       {/* Modal Konfirmasi Logout */}
       {showLogoutModal && (
