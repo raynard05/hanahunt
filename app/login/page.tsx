@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -8,16 +8,27 @@ import { Eye, EyeOff } from "lucide-react";
 import FullscreenPrompt from "@/components/fullscreen/FullscreenPrompt";
 import FloatingIcons from "@/components/floating/FloatingIcons";
 import BubbleEffect from "@/components/bubble/BubbleEffect";
+import { useCloudTransition } from "@/components/cloud/CloudTransitionProvider";
 import { supabase } from "@/lib/supabaseClient";
 import "./login.css";
 
 export default function LoginPage() {
   const router = useRouter();
+  const { triggerTransition } = useCloudTransition();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [msg, setMsg] = useState<{ text: string; type: "error" | "success" } | null>(null);
+
+  // Pastikan form selalu bersih saat landing di halaman login
+  useEffect(() => {
+    router.prefetch("/menu");
+    setUsername("");
+    setPassword("");
+    setMsg(null);
+    setIsLoading(false);
+  }, [router]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,9 +67,11 @@ export default function LoginPage() {
       if (typeof window !== "undefined") {
         sessionStorage.setItem("hana_user", JSON.stringify(data));
       }
-      setTimeout(() => {
+
+      // Mulai transisi awan tebal menutup layar secara global
+      triggerTransition(() => {
         router.push("/menu");
-      }, 700);
+      });
     } catch (err: unknown) {
       const errorMsg = err instanceof Error ? err.message : "Ana kaluputan teknis";
       setMsg({ text: `Kaluputan: ${errorMsg}`, type: "error" });

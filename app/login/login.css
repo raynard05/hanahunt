@@ -54,7 +54,7 @@
   height: 10.5vh;
   background: linear-gradient(180deg, #e1edd9 0%, #cee3c4 48%, #bad7b0 100%);
   border: 0.22vw solid #21471c;
-  border-radius: 1vw;
+  border-radius: 1.4vw;
   box-shadow:
     0 0.6vh 1.4vh rgba(0, 0, 0, 0.45),
     inset 0 0.15vh 0.3vh rgba(255, 255, 255, 0.85),

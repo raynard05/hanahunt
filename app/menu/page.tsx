@@ -24,24 +24,35 @@ export default function MenuPage() {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   useEffect(() => {
+    // Selalu pastikan modal logout tertutup saat halaman menu dimuat
+    setShowLogoutModal(false);
+
     // Membaca data pengguna yang tersimpan saat login / regis
     try {
       const stored = sessionStorage.getItem("hana_user");
       if (stored) {
         setUser(JSON.parse(stored));
+      } else {
+        // Jika tidak ada session / sudah logout, arahkan ke login
+        router.replace("/login");
       }
     } catch {
-      // Abaikan jika tidak ada storage
+      router.replace("/login");
     }
-  }, []);
+  }, [router]);
 
   const handleLogout = () => {
+    // 1. Tutup modal secara eksplisit terlebih dahulu
+    setShowLogoutModal(false);
+    // 2. Hapus sesi penyimpanan
     try {
       sessionStorage.removeItem("hana_user");
+      sessionStorage.clear();
     } catch {
       // Abaikan
     }
-    router.push("/login");
+    // 3. Arahkan kembali ke /login dengan replace agar tidak menumpuk riwayat sesi
+    router.replace("/login");
   };
 
   return (

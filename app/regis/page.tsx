@@ -1,17 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
 import FullscreenPrompt from "@/components/fullscreen/FullscreenPrompt";
 import BubbleEffect from "@/components/bubble/BubbleEffect";
+import { useCloudTransition } from "@/components/cloud/CloudTransitionProvider";
 import { supabase } from "@/lib/supabaseClient";
 import "./regis.css";
 
 export default function RegisPage() {
   const router = useRouter();
+  const { triggerTransition } = useCloudTransition();
   const [namaLengkap, setNamaLengkap] = useState("");
   const [username, setUsername] = useState("");
   const [kelas, setKelas] = useState("");
@@ -20,6 +22,18 @@ export default function RegisPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [msg, setMsg] = useState<{ text: string; type: "error" | "success" } | null>(null);
+
+  // Pastikan form selalu bersih saat landing di halaman regis
+  useEffect(() => {
+    router.prefetch("/menu");
+    setNamaLengkap("");
+    setUsername("");
+    setKelas("");
+    setNomorAbsen("");
+    setKataSandi("");
+    setMsg(null);
+    setIsLoading(false);
+  }, [router]);
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -87,9 +101,11 @@ export default function RegisPage() {
           nomor_absen: parsedAbsen,
         }));
       }
-      setTimeout(() => {
+
+      // Mulai transisi awan tebal secara global
+      triggerTransition(() => {
         router.push("/menu");
-      }, 700);
+      });
       setNamaLengkap("");
       setUsername("");
       setKelas("");

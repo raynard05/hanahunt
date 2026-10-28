@@ -1,0 +1,12 @@
+-buatkan komponen animasi cloud ,
+-animasi cloud yang dimakksud adalah jika berhasil login atau regis , ada awan tebal dari kiri dan kanan ke tengah lalu menutupi layar dan delay 1,6 deting sebelum awan kembali 
+ menghilang ke tempat semula 
+-setelah awan hilang maka akan menampilkan halaman menu secara langsung
+
+buatkan se keren mungkin 
+
+
+bug nya : 
+- saat awan terbuka malah masih di halaman menu 
+- dan awan tidak tertutup rapat  
+- tidak usah tambahan loading ditengah dan logo

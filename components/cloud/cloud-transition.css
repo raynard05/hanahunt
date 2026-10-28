@@ -1,0 +1,72 @@
+/* ==========================================================================
+   CLOUD TRANSITION - HANA HUNT
+   Awan kiri & kanan slide lembut dari tepi ke tengah, menutup rapat, lalu buka.
+   ========================================================================== */
+
+.hh-cloud-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 9999;
+  pointer-events: all;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* === Wing Container === */
+.hh-cloud-wing {
+  position: absolute;
+  top: -5vh;
+  height: 110vh;
+  width: 55vw;              /* > 50vw supaya overlap di tengah */
+  display: flex;
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Posisi awal: jauh di luar layar */
+.hh-cloud-left {
+  left: 0;
+  flex-direction: row;      /* solid di kiri, edge di kanan */
+  transform: translateX(-100%);
+}
+.hh-cloud-right {
+  right: 0;
+  flex-direction: row-reverse; /* solid di kanan, edge di kiri */
+  transform: translateX(100%);
+}
+
+/* Closing: slide ke posisi 0 (bertemu & overlap di tengah) */
+.hh-cloud-overlay.is-closing .hh-cloud-left,
+.hh-cloud-overlay.is-closing .hh-cloud-right {
+  transform: translateX(0);
+}
+
+/* Opening: slide kembali keluar */
+.hh-cloud-overlay.is-opening .hh-cloud-left {
+  transform: translateX(-100%);
+}
+.hh-cloud-overlay.is-opening .hh-cloud-right {
+  transform: translateX(100%);
+}
+
+/* === Bagian Solid Putih (menutupi layar tanpa celah) === */
+.hh-cloud-solid {
+  flex: 1;
+  background: linear-gradient(90deg, #dbeafe 0%, #ecfdf5 40%, #ffffff 100%);
+  min-width: 0;
+}
+.hh-cloud-right .hh-cloud-solid {
+  background: linear-gradient(270deg, #dbeafe 0%, #ecfdf5 40%, #ffffff 100%);
+}
+
+/* === SVG Tepi Bergelombang (hanya di sisi luar) === */
+.hh-cloud-edge {
+  width: 12vw;
+  flex-shrink: 0;
+  height: 100%;
+  filter: drop-shadow(0 0 1.5vw rgba(10, 40, 25, 0.2));
+}

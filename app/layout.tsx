@@ -14,6 +14,8 @@ const rubikOne = Rubik_Mono_One({
   weight: ["400"],
 });
 
+import { CloudTransitionProvider } from "@/components/cloud/CloudTransitionProvider";
+
 export const metadata: Metadata = {
   title: "Hana Hunt - Petualangan Sinau Basa Jawa",
   description: "Game edukasi lan petualangan sinau aksara jawa kanggo kanca-kanca!",
@@ -29,7 +31,11 @@ export default function RootLayout({
       lang="jv"
       className={`${rubik.variable} ${rubikOne.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        <CloudTransitionProvider>
+          {children}
+        </CloudTransitionProvider>
+      </body>
     </html>
   );
 }
