@@ -1,0 +1,75 @@
+/* ==========================================================================
+   FALLING LEAVES (DAUN BERJATUHAN) COMPONENT STYLES - HANA HUNT
+   Rules:
+   - Terpisah antara TSX dan CSS (AIRULE.TXT)
+   - Menggunakan satuan vh / vw secara ketat untuk zoom-lock
+   - Selector unik berawalan .hh-leaves-*
+   - Pointer-events: none agar tidak menghalangi klik/interaksi menu
+   - Animasi daun bergoyang pelan, berputar (3D rotate), dan jatuh perlahan
+   ========================================================================== */
+
+.hh-leaves-viewport {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 15; /* Di atas latar/coverflow, tidak mengganggu tombol */
+  user-select: none;
+}
+
+.hh-leaves-item {
+  position: absolute;
+  top: -15vh; /* Mulai dari atas viewport */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation-name: hhLeafFall;
+  animation-timing-function: cubic-bezier(0.35, 0.1, 0.25, 1);
+  animation-iteration-count: infinite;
+}
+
+.hh-leaves-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0.4vh 0.8vh rgba(0, 0, 0, 0.35));
+}
+
+/* ==========================================================================
+   KEYFRAME ANIMATIONS: JATUH PERLAHAN, MELIUK (SWAY) & ROTASI 3D
+   ========================================================================== */
+
+@keyframes hhLeafFall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg) rotateY(0deg) scale(0.85);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.95;
+  }
+  25% {
+    transform: translateY(30vh) translateX(3.5vw) rotate(45deg) rotateY(180deg) scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(60vh) translateX(-3vw) rotate(-30deg) rotateY(360deg) scale(0.95);
+    opacity: 0.85;
+  }
+  75% {
+    transform: translateY(90vh) translateX(2.8vw) rotate(35deg) rotateY(540deg) scale(1);
+    opacity: 0.75;
+  }
+  92% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(118vh) translateX(-1.5vw) rotate(70deg) rotateY(720deg) scale(0.9);
+    opacity: 0;
+  }
+}

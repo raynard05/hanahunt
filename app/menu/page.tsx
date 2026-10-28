@@ -7,6 +7,7 @@ import FullscreenPrompt from "@/components/fullscreen/FullscreenPrompt";
 import AudioToggle from "@/components/audio/AudioToggle";
 import Coverflow from "@/components/coverflow/Coverflow";
 import MistEffect from "@/components/mist/MistEffect";
+import FallingLeaves from "@/components/leaves/FallingLeaves";
 import "./menu.css";
 
 interface UserAccount {
@@ -112,6 +113,9 @@ export default function MenuPage() {
           />
         </div>
       </button>
+
+      {/* Animasi Daun Berjatuhan dari Atas ke Bawah */}
+      <FallingLeaves />
 
       {/* Efek Embun Air Terjun - Dirender Paling Depan/Atas Layar */}
       <MistEffect />
