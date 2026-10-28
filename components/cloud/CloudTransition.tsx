@@ -71,7 +71,7 @@ export default function CloudTransition({
       <div className="hh-cloud-wing hh-cloud-left">
         <div className="hh-cloud-solid" />
         <svg viewBox="0 0 L200 1000" preserveAspectRatio="none" className="hh-cloud-edge">
-          <path d="M0,0 L200,0 Q80,125 160,250 Q40,375 160,500 Q40,625 160,750 Q80,875 200,1000 L0,1000 Z" fill="#ffffff" />
+          <path d="M0,0 200,0 Q80,125 160,250 Q40,375 160,500 Q40,625 160,750 Q80,875 200,1000 L0,1000 Z" fill="#ffffff" />
         </svg>
       </div>
 
