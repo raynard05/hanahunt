@@ -20,26 +20,28 @@
   position: absolute;
   top: -5vh;
   height: 110vh;
-  width: 55vw;              /* > 50vw supaya overlap di tengah */
+  width: 58vw;
+  min-width: 58vw;
   display: flex;
   pointer-events: none;
   will-change: transform;
-  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 1s cubic-bezier(0.35, 0, 0.15, 1);
 }
 
 /* Posisi awal: jauh di luar layar */
 .hh-cloud-left {
   left: 0;
-  flex-direction: row;      /* solid di kiri, edge di kanan */
+  flex-direction: row;
   transform: translateX(-100%);
 }
+
 .hh-cloud-right {
   right: 0;
-  flex-direction: row-reverse; /* solid di kanan, edge di kiri */
+  flex-direction: row-reverse;
   transform: translateX(100%);
 }
 
-/* Closing: slide ke posisi 0 (bertemu & overlap di tengah) */
+/* Closing: slide ke tengah & overlap sempurna */
 .hh-cloud-overlay.is-closing .hh-cloud-left,
 .hh-cloud-overlay.is-closing .hh-cloud-right {
   transform: translateX(0);
@@ -49,6 +51,7 @@
 .hh-cloud-overlay.is-opening .hh-cloud-left {
   transform: translateX(-100%);
 }
+
 .hh-cloud-overlay.is-opening .hh-cloud-right {
   transform: translateX(100%);
 }
@@ -56,17 +59,25 @@
 /* === Bagian Solid Putih (menutupi layar tanpa celah) === */
 .hh-cloud-solid {
   flex: 1;
-  background: linear-gradient(90deg, #dbeafe 0%, #ecfdf5 40%, #ffffff 100%);
+  background: #ffffff;
   min-width: 0;
-}
-.hh-cloud-right .hh-cloud-solid {
-  background: linear-gradient(270deg, #dbeafe 0%, #ecfdf5 40%, #ffffff 100%);
+  height: 100%;
 }
 
-/* === SVG Tepi Bergelombang (hanya di sisi luar) === */
+/* === SVG Tepi Bergelombang === */
 .hh-cloud-edge {
-  width: 12vw;
+  width: clamp(80px, 14vw, 220px);
   flex-shrink: 0;
   height: 100%;
-  filter: drop-shadow(0 0 1.5vw rgba(10, 40, 25, 0.2));
+  display: block;
+}
+
+.hh-cloud-left .hh-cloud-edge {
+  margin-left: -1px; /* kunci agar sambungan solid dan svg rapat tanpa garis celah sub-pixel */
+  filter: drop-shadow(0.4vw 0 1vw rgba(0, 0, 0, 0.08));
+}
+
+.hh-cloud-right .hh-cloud-edge {
+  margin-right: -1px;
+  filter: drop-shadow(-0.4vw 0 1vw rgba(0, 0, 0, 0.08));
 }
