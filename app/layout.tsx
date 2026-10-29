@@ -15,6 +15,7 @@ const rubikOne = Rubik_Mono_One({
 });
 
 import { CloudTransitionProvider } from "@/components/cloud/CloudTransitionProvider";
+import ScreenGuard from "@/components/screenguard/ScreenGuard";
 
 export const metadata: Metadata = {
   title: "Hana Hunt - Petualangan Sinau Basa Jawa",
@@ -32,6 +33,7 @@ export default function RootLayout({
       className={`${rubik.variable} ${rubikOne.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
+        <ScreenGuard />
         <CloudTransitionProvider>
           {children}
         </CloudTransitionProvider>

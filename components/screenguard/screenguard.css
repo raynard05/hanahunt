@@ -1,0 +1,137 @@
+/* ==========================================================================
+   SCREEN GUARD (PORTRAIT BLOCKER) - HANA HUNT
+   Muncul otomatis saat orientasi layar portrait
+   ========================================================================== */
+
+.hh-screenguard-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 999999;
+  background: radial-gradient(circle at center, #1b3819 0%, #0d1e0c 70%, #071206 100%);
+  color: #ffffff;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  user-select: none;
+  overflow: hidden;
+}
+
+/* Tampilkan hanya saat layar mode Portrait pada HP / Layar sempit */
+@media screen and (orientation: portrait) and (max-width: 1024px) {
+  .hh-screenguard-overlay {
+    display: flex;
+  }
+}
+
+.hh-screenguard-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 380px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 2px solid rgba(134, 239, 172, 0.25);
+  border-radius: 1.5rem;
+  padding: 2.2rem 1.8rem;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: hh-guard-appear 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Animasi rotasi HP dari Portrait ke Landscape */
+.hh-screenguard-anim {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.hh-screenguard-phone-icon {
+  color: #86efac;
+  filter: drop-shadow(0 0 12px rgba(134, 239, 172, 0.5));
+  animation: hh-rotate-phone 2.4s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+.hh-screenguard-badge {
+  display: inline-block;
+  background: rgba(134, 239, 172, 0.15);
+  border: 1px solid rgba(134, 239, 172, 0.4);
+  color: #86efac;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 0.8rem;
+}
+
+.hh-screenguard-title {
+  font-family: var(--font-rubik-one), var(--font-rubik), sans-serif;
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #fef08a;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  margin-bottom: 0.6rem;
+}
+
+.hh-screenguard-desc {
+  font-family: var(--font-rubik), sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #e2e8f0;
+  margin-bottom: 1.4rem;
+}
+
+.hh-screenguard-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  color: #94a3b8;
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
+  padding-top: 0.9rem;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Keyframes */
+@keyframes hh-rotate-phone {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(0deg) scale(1);
+  }
+  60% {
+    transform: rotate(-90deg) scale(1.1);
+  }
+  85% {
+    transform: rotate(-90deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes hh-guard-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
