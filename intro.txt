@@ -1,0 +1,15 @@
+
+-buatkan halaman intro , ini juga untuk beberapa halamaan intro setiap babak 
+-semua asset ada di \assets\sinopsis\babak1
+- jangan tambahkan teks , hanya tata sesuai gambar referensi dari desainer 
+- setelah menambahkan semua asset di poin 2 , tambahkan logo dari assets/main di pojok bawah kanan 
+
+
+additional prompt 
+-tambahkan animasi opening setiap mengunjungi halaman ini 
+-render assets/main/cover.webp awalnya menutup semua halaman lalu 
+beranimasi membuka keatas pelan pelan untuk menampilkan halaman intro secara langsung 
+
+
+
+halaman intro dari babak1 ini adalah redirect dari wiwitan yang di halaman menu 

@@ -1,0 +1,359 @@
+/* ==========================================================================
+   INTRO BABAK 1 PAGE STYLES - HANA HUNT
+   Rules (AIRULE.TXT):
+   1. Terpisah antara TSX dan CSS
+   3-4. Responsif resolusi mobile landscape, laptop, monitor menggunakan vw/vh
+   5. Landscape only (jangan portrait)
+   6. DILARANG menggunakan satuan px untuk komponen (kecuali background), gunakan vw dan vh
+   11. Didalam folder /intro/babak1 ada page.tsx dan intro-babak1.css
+   12. Selector unik: berawalan .hh-intro-*
+   14. px & % hanya untuk elemen background
+   16. ZOOM-LOCK & KONSISTENSI DEVICE:
+       - Posisi dan proporsi terkunci konstan di semua level zoom browser
+       - Media query mobile landscape terlindungi dengan pointer coarse
+   ========================================================================== */
+
+.hh-intro-viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #0b1a0d;
+  background-image: url('/assets/sinopsis/babak1/bg.webp');
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   ANIMASI OPENING COVER (assets/main/cover.webp)
+   - Awalnya menutup seluruh halaman layar
+   - Beranimasi membuka pelan-pelan ke atas untuk menampilkan intro secara langsung
+   ========================================================================== */
+.hh-intro-opening-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 999;
+  pointer-events: none;
+  background-image: url('/assets/main/cover.webp');
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transform: translateY(0);
+  transition: transform 1.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.5s ease 1.2s;
+  box-shadow: 0 1vh 3vh rgba(0, 0, 0, 0.7);
+}
+
+.hh-intro-opening-cover.is-revealed {
+  transform: translateY(-105%);
+  opacity: 0;
+}
+
+/* ==========================================================================
+   POJOK KIRI ATAS: TOMBOL HOME (kembali ke Menu)
+   ========================================================================== */
+.hh-intro-home-btn {
+  position: absolute;
+  top: 3.2vh;
+  left: 2.2vw;
+  z-index: 30;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  width: 5.6vw;
+  height: 5.6vw;
+  min-width: 5.6vw;
+  min-height: 5.6vw;
+  transition: transform 0.18s ease, filter 0.18s ease;
+  filter: drop-shadow(0 0.5vh 1vh rgba(0, 0, 0, 0.5));
+}
+
+.hh-intro-home-btn:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0.7vh 1.4vh rgba(0, 0, 0, 0.6)) brightness(1.1);
+}
+
+.hh-intro-home-btn:active {
+  transform: scale(0.94);
+}
+
+.hh-intro-home-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   POJOK KANAN ATAS: GRUP TOMBOL SOUND & RIGHT (BERDAMPINGAN PERSIS GAMBAR 2)
+   ========================================================================== */
+.hh-intro-top-right-group {
+  position: absolute;
+  top: 3.2vh;
+  right: 2.2vw;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+/* Tombol Sound dalam grup */
+.hh-intro-sound-btn {
+  width: 5.6vw !important;
+  height: 5.6vw !important;
+  min-width: 5.6vw !important;
+  min-height: 5.6vw !important;
+  filter: drop-shadow(0 0.5vh 1vh rgba(0, 0, 0, 0.5));
+}
+
+/* Tombol Right (Next) dalam grup */
+.hh-intro-next-btn {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  width: 5.6vw;
+  height: 5.6vw;
+  min-width: 5.6vw;
+  min-height: 5.6vw;
+  transition: transform 0.18s ease, filter 0.18s ease;
+  filter: drop-shadow(0 0.5vh 1vh rgba(0, 0, 0, 0.5));
+}
+
+.hh-intro-next-btn:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0.7vh 1.4vh rgba(0, 0, 0, 0.6)) brightness(1.1);
+}
+
+.hh-intro-next-btn:active {
+  transform: scale(0.94);
+}
+
+.hh-intro-next-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   KONTEN UTAMA SINOPSIS BABAK 1
+   - Title Babak 1 di atas tengah (title.webp, 888x109)
+   - Desc Papirus Sinopsis di tengah (desc.webp, 1683x947)
+   ========================================================================== */
+.hh-intro-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 120vw;
+  height: 100vh;
+  margin-top: 1vh;
+}
+
+/* Title Babak 1 (title.webp) */
+.hh-intro-title-wrap {
+  position: relative;
+  top: 3vh;
+  width: 40vw;
+  aspect-ratio: 888 / 109;
+  max-width: 42vw;
+  margin-bottom: 1.2vh;
+  filter: drop-shadow(0 0.6vh 1.2vh rgba(0, 0, 0, 0.6));
+}
+
+.hh-intro-title-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Desc Papirus Sinopsis Babak 1 (desc.webp) - Ukuran Pas & Proporsional Layar */
+.hh-intro-desc-wrap {
+  position: relative;
+  width: 99vw;
+  height: 89vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0.8vh 1.8vh rgba(0, 0, 0, 0.55));
+}
+
+.hh-intro-desc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   POJOK KANAN BAWAH: LOGO HANA HUNT (assets/main/patung.webp)
+   - Tampil persis di pojok kanan bawah menimpa dekorasi daun/plang kayu sesuai gambar 2
+   ========================================================================== */
+.hh-intro-logo-wrap {
+  position: absolute;
+  bottom: 0.8vh;
+  right: 1.2vw;
+  z-index: 25;
+  width: 17vw;
+  height: 17vw;
+  min-width: 17vw;
+  min-height: 17vw;
+  pointer-events: none;
+  filter: drop-shadow(0 0.8vh 1.6vh rgba(0, 0, 0, 0.65));
+  transition: transform 0.25s ease;
+}
+
+.hh-intro-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   ZOOM-LOCK & RESPONSIVE BREAKPOINTS (AIRULE.TXT Aturan 6, 7, 10, 16)
+   - Ukuran vw/vh terkunci konstan di Laptop Standar, Sedang, Layar Besar & Monitor
+   - Tampilan Fullscreen & Non-Fullscreen identik tanpa lonjakan ukuran
+   ========================================================================== */
+
+/* Laptop Sedang Non-Fullscreen (Browser windowed dengan UI tab/address bar aktif) */
+@media screen and (max-width: 63.99em) and (min-width: 48em) {
+  .hh-intro-content {
+    width: 120vw;
+    height: 100vh;
+  }
+
+  .hh-intro-title-wrap {
+    width: 40vw;
+    top: 3vh;
+  }
+
+  .hh-intro-desc-wrap {
+    width: 99vw;
+    height: 89vh;
+  }
+
+  .hh-intro-home-btn,
+  .hh-intro-sound-btn,
+  .hh-intro-next-btn {
+    width: 5.6vw !important;
+    height: 5.6vw !important;
+  }
+
+  .hh-intro-logo-wrap {
+    width: 17vw;
+    height: 17vw;
+  }
+}
+
+/* Laptop Sedang & Standar (Terkunci Konstan Seragam) */
+@media screen and (min-width: 64em) and (max-width: 90em) {
+  .hh-intro-content {
+    width: 120vw;
+    height: 100vh;
+  }
+
+  .hh-intro-title-wrap {
+    width: 40vw;
+    top: 3vh;
+  }
+
+  .hh-intro-desc-wrap {
+    width: 99vw;
+    height: 89vh;
+  }
+
+  .hh-intro-home-btn,
+  .hh-intro-sound-btn,
+  .hh-intro-next-btn {
+    width: 5.6vw !important;
+    height: 5.6vw !important;
+  }
+
+  .hh-intro-logo-wrap {
+    width: 17vw;
+    height: 17vw;
+  }
+}
+
+/* Layar Besar & Monitor (Terkunci Konstan Seragam) */
+@media screen and (min-width: 90.063em) {
+  .hh-intro-content {
+    width: 120vw;
+    height: 100vh;
+  }
+
+  .hh-intro-title-wrap {
+    width: 40vw;
+    top: 3vh;
+  }
+
+  .hh-intro-desc-wrap {
+    width: 99vw;
+    height: 89vh;
+  }
+
+  .hh-intro-home-btn,
+  .hh-intro-sound-btn,
+  .hh-intro-next-btn {
+    width: 5.6vw !important;
+    height: 5.6vw !important;
+  }
+
+  .hh-intro-logo-wrap {
+    width: 17vw;
+    height: 17vw;
+  }
+}
+
+/* Mobile Landscape (Layar Sentuh Asli) */
+@media screen and (max-width: 56.25em) and (orientation: landscape) and (pointer: coarse) {
+  .hh-intro-content {
+    width: 120vw;
+    height: 100vh;
+  }
+
+  .hh-intro-title-wrap {
+    width: 36vw;
+    top: 4vh;
+  }
+
+  .hh-intro-desc-wrap {
+    width: 99vw;
+    height: 88vh;
+    top: 3vh;
+  }
+
+  .hh-intro-home-btn,
+  .hh-intro-sound-btn,
+  .hh-intro-next-btn {
+    width: 6.5vw !important;
+    height: 6.5vw !important;
+  }
+
+  .hh-intro-logo-wrap {
+    width: 8vw;
+    height: 8vw;
+    bottom: 0.5vh;
+    right: 0.8vw;
+  }
+}

@@ -47,7 +47,7 @@ export default function AudioToggle({ className = "", onToggle }: AudioTogglePro
       title={isMuted ? "Uripake Swara" : "Pateni Swara"}
     >
       <Image
-        src={isMuted ? "/assets/main/soundoff.png" : "/assets/main/soundon.png"}
+        src={isMuted ? "/assets/main/button_rev/soundoff.png" : "/assets/main/button_rev/soundon.png"}
         alt={isMuted ? "Sound Off" : "Sound On"}
         width={70}
         height={70}

@@ -55,6 +55,16 @@ export default function MenuPage() {
     router.replace("/login");
   };
 
+  const handlePlayMenu = (item: { id: string; title: string }) => {
+    if (item.id === "wiwiti") {
+      // Langsung redirect ke intro babak 1 tanpa cloud transition,
+      // animasi cover.webp di intro babak 1 akan langsung berjalan
+      router.push("/intro/babak1");
+    } else {
+      console.log("Miwiti menu:", item.title);
+    }
+  };
+
   return (
     <main className="hh-menu-viewport">
       <FullscreenPrompt />
@@ -72,7 +82,7 @@ export default function MenuPage() {
       >
         <div className="hh-menu-profile-icon-wrap">
           <Image
-            src="/assets/main/profile.png"
+            src="/assets/main/button_rev/profile.png"
             alt="Profil Icon"
             width={75}
             height={75}
@@ -98,11 +108,7 @@ export default function MenuPage() {
       </div>
 
       {/* Komponen Interaktif Coverflow Carousel Menu */}
-      <Coverflow
-        onPlay={(item) => {
-          console.log("Miwiti menu:", item.title);
-        }}
-      />
+      <Coverflow onPlay={handlePlayMenu} />
 
       {/* Pojok Kanan Bawah: Icon Logout */}
       <button
@@ -115,7 +121,7 @@ export default function MenuPage() {
       >
         <div className="hh-menu-logout-icon-wrap">
           <Image
-            src="/assets/main/logout.png"
+            src="/assets/main/button_rev/logout.png"
             alt="Logout Icon"
             width={75}
             height={75}
