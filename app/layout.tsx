@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Rubik, Rubik_Mono_One } from "next/font/google";
 import "./globals.css";
 
@@ -16,6 +16,14 @@ const rubikOne = Rubik_Mono_One({
 
 import { CloudTransitionProvider } from "@/components/cloud/CloudTransitionProvider";
 import ScreenGuard from "@/components/screenguard/ScreenGuard";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   title: "Hana Hunt - Petualangan Sinau Basa Jawa",
