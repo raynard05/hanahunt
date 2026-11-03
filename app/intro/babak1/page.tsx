@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import AudioToggle from "@/components/audio/AudioToggle";
 import FullscreenPrompt from "@/components/fullscreen/FullscreenPrompt";
 import FallingLeaves from "@/components/leaves/FallingLeaves";
+import ExitConfirmModal from "@/components/exit/ExitConfirmModal";
 import "./intro-babak1.css";
 
 export default function IntroBabak1Page() {
@@ -15,6 +16,39 @@ export default function IntroBabak1Page() {
   // lalu beranimasi membuka ke atas pelan-pelan (intro.txt)
   const [isRevealed, setIsRevealed] = useState(false);
   const [coverMounted, setCoverMounted] = useState(true);
+  const [showExitConfirm, setShowExitConfirm] = useState(false);
+
+  // Simpan progress bahwa player sudah mencapai / sedang di babak 1
+  useEffect(() => {
+    try {
+      const existing = localStorage.getItem("hh_session_babak1");
+      if (!existing) {
+        localStorage.setItem(
+          "hh_session_babak1",
+          JSON.stringify({
+            stage: "intro",
+            currentRoundIndex: 0,
+            score: 0,
+            timerSeconds: 1800,
+            chances: 3,
+            updatedAt: Date.now(),
+          })
+        );
+      }
+    } catch {
+      // Abaikan jika storage disabled
+    }
+  }, []);
+
+  const handleConfirmExit = () => {
+    try {
+      localStorage.removeItem("hh_session_babak1");
+    } catch {
+      // Ignore
+    }
+    setShowExitConfirm(false);
+    router.push("/menu");
+  };
 
   useEffect(() => {
     // Beri jeda/delay 1.5 detik (1500ms) saat layar ditutupi cover.webp,
@@ -47,12 +81,12 @@ export default function IntroBabak1Page() {
         />
       )}
 
-      {/* Pojok Kiri Atas: Tombol Home (Kembali ke Halaman Menu) */}
+      {/* Pojok Kiri Atas: Tombol Home (Membuka dialog konfirmasi keluar) */}
       <button
         type="button"
         id="hh-intro-btn-home"
         className="hh-intro-home-btn"
-        onClick={() => router.push("/menu")}
+        onClick={() => setShowExitConfirm(true)}
         aria-label="Bali menyang Menu Utama"
         title="Bali menyang Menu Utama"
       >
@@ -74,8 +108,8 @@ export default function IntroBabak1Page() {
           id="hh-intro-btn-next"
           className="hh-intro-next-btn"
           onClick={() => {
-            // Navigasi ke babak permainan selanjutnya ketika gameplay siap
-            console.log("Lanjut ke game Babak 1");
+            // Redirect menyang halaman dolanan Panahan Babak 1 (panahan.txt)
+            router.push("/panahan/babak1");
           }}
           aria-label="Lanjut menyang Babak 1"
           title="Lanjut menyang Babak 1"
@@ -130,8 +164,15 @@ export default function IntroBabak1Page() {
         />
       </div>
 
-      {/* Animasi Daun Berjatuhan dari Atas ke Bawah */}
-      <FallingLeaves />
+      {/* Animasi Daun Berjatuhan di Lapisan Paling Atas */}
+      <FallingLeaves className="hh-intro-leaves" />
+
+      {/* Pop Up Konfirmasi Metu Saka Game (Jawa Ngoko) */}
+      <ExitConfirmModal
+        isOpen={showExitConfirm}
+        onConfirm={handleConfirmExit}
+        onCancel={() => setShowExitConfirm(false)}
+      />
     </main>
   );
 }

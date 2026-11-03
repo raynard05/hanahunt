@@ -1,0 +1,53 @@
+ini adalah prompt halaman panahan , jalankan sesuai perintah dan jangan ada tambahan lain selain ini dikarenakan
+semua perintah pasti tersedia disini 
+
+semua asset ada di /assets/babak1
+pop up ada di /assets/popup 
+
+
+
+# halaman PANAHAN prompt 
+- halaman panahan adalah redirect dari  tombol next  halaman intro babak 1 
+- sesuaikan dengan screenshot  dari desainer 
+- terlebih dahulu pasangkan bg nya di /assets/babak1/bg.webp
+- render soalnya di lingkaran yang ada di bg nya nanti kamu bisa lihat di screenshot 
+- soalnya bisa didapat di \assets\babak1\question_answer dan tiap ronde nya ada file png nya nah itu tata dalam lingkaran panahan sesuai nama angka file nya
+- jawaban setiap rondenya ada di file txt nya , dan di txt nya juga ada soal nya diatas jawaban , itu buatkan pop up saja dan di trigger oleh icon  komponen show_question
+-  buatkan komponen show_question dengan icon D:\hanahunt\assets\babak1\show_question.webp (untuk memunculkan pop up soal dari file txt tiap round nya , gunakan jakarta sans dalam menampilkan soal )
+- render top bar diatas sesuai gambar referensi 
+- tambahkan tombol manah disamping  komponen panah dengan text "Manah"
+- buatkan komponen panah dengan asset /beforemanah.webp  jika belum ada trigger gambar aksara di lingkaran / sudah ditembak kan dengan tombol manah  dan   /manah.webp jika sudah dipencet gambar aksara dalam lingkaran 
+- yang memancar efek warna  css nya dengan asset gambar aksara di dalam gambar yang ada di lingkaran  komponen panahnya 
+
+
+#mekanisme dalam menjawab dan buatkan logic nya : 
+- user mengklik gambar huruf aksara yang ada di lingkaran 
+- lalu panah gambar nya beerotasi derajat sesuai letak  lingklaran gambar dan memancarkan warna atau garis patah patah , terserah
+- lalu pencet tombol "Manah" disamping kanan komponen panah 
+- kalau benar / salah munculkan pop up yang sesuai dari  /assets/popup 
+- chance menjawab 3 kali jika salah 
+- benar beri poin 10
+- salah beri poin  0
+- total ada 7 ronde 
+
+
+
+# topbar (tersendiri )
+- buatkan komponen tersendiri diluar  halaman ini dengan nama komponen topbar 
+- top bar bermuat  tombol home di kiri  dan kompomen (audio yang sudah dibuat ) di kanan 
+- 
+
+
+ #  TIMER ( tersendiri)
+- buatkan komponen timer yang ada art nya tersendiri di luar top bar dengan nama timer berikan default 30 menit 
+- jika waktu habis munculkan pop up pop up ada di /assets/popup /waktunyahabis.webp
+- dan jika waktu habis akan beralihkan ke soal berikutnya 
+- render timer di dalam top bar , detailnya di tengah top bar  
+
+
+# score
+- buatkan komponen skor tersendiri , yang ada art nya 
+- komponen ini gunanya untuk menampilkan skor yang tercatat 
+- tambahkan assets/main/bintang.webp dan animasikan skor
+- berikan animasi yang menarik
+- render didalam  top bar , detailnya di samping kanan timer 

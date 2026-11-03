@@ -33,13 +33,14 @@ const DEFAULT_LEAVES: LeafParticle[] = [
 
 export interface FallingLeavesProps {
   leaves?: LeafParticle[];
+  className?: string;
 }
 
-export default function FallingLeaves({ leaves = DEFAULT_LEAVES }: FallingLeavesProps) {
+export default function FallingLeaves({ leaves = DEFAULT_LEAVES, className = "" }: FallingLeavesProps) {
   const instanceId = useId();
 
   return (
-    <div className="hh-leaves-viewport" aria-hidden="true">
+    <div className={`hh-leaves-viewport ${className}`} aria-hidden="true">
       {leaves.map((leaf) => (
         <div
           key={`${instanceId}-leaf-${leaf.id}`}

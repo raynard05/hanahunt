@@ -60,6 +60,17 @@
 }
 
 /* ==========================================================================
+   DAUN JATUH DI LAPISAN PALING ATAS
+   - z-index: 50 berada di atas papan sinopsis (z-index: 10), logo (z-index: 25),
+     dan tombol header (z-index: 30)
+   - pointer-events: none agar tidak menghalangi klik tombol
+   ========================================================================== */
+.hh-intro-leaves {
+  z-index: 50 !important;
+  pointer-events: none !important;
+}
+
+/* ==========================================================================
    POJOK KIRI ATAS: TOMBOL HOME (kembali ke Menu)
    ========================================================================== */
 .hh-intro-home-btn {

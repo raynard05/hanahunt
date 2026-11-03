@@ -1,0 +1,185 @@
+/* ==========================================================================
+   EXIT CONFIRMATION MODAL (JAWA NGOKO) - HANA HUNT
+   Rules (AIRULE.TXT):
+   - Satuan vh / vw ketat (tanpa px untuk layout)
+   - Font Rubik One untuk judul & tombol, Plus Jakarta Sans untuk deskripsi
+   - Zoom-locked, selaras dengan tema kayu & batu alam Coban Rondo
+   ========================================================================== */
+
+.hh-exit-modal-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 150;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(0.7vw);
+  -webkit-backdrop-filter: blur(0.7vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: hh-exit-fade 0.25s ease-out;
+  user-select: none;
+}
+
+.hh-exit-modal-card {
+  width: 44vw;
+  max-width: 48vw;
+  background: linear-gradient(180deg, #fefae0 0%, #fef08a 100%);
+  border: 0.35vw solid #78350f;
+  border-radius: 1.6vw;
+  padding: 3.5vh 3vw 3vh 3vw;
+  box-sizing: border-box;
+  box-shadow:
+    0 1.2vh 3vh rgba(0, 0, 0, 0.75),
+    inset 0 0.3vh 0.6vh rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: hh-exit-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hh-exit-modal-icon-wrap {
+  width: 4vw;
+  height: 4vw;
+  margin-bottom: 1.2vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0.4vh 0.8vh rgba(0, 0, 0, 0.4));
+}
+
+.hh-exit-modal-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hh-exit-modal-title {
+  font-family: var(--font-rubik-one), Impact, sans-serif;
+  font-size: 1.8vw;
+  color: #78350f;
+  letter-spacing: 0.05vw;
+  margin: 0 0 1.2vh 0;
+  text-transform: uppercase;
+}
+
+.hh-exit-modal-desc {
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  font-size: 1.25vw;
+  font-weight: 700;
+  color: #451a03;
+  line-height: 1.5;
+  margin: 0 0 3vh 0;
+  padding: 0 1vw;
+}
+
+.hh-exit-modal-desc strong {
+  color: #b91c1c;
+  font-weight: 800;
+}
+
+.hh-exit-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+  width: 100%;
+}
+
+.hh-exit-modal-btn {
+  font-family: var(--font-rubik-one), Impact, sans-serif;
+  font-size: 1.25vw;
+  letter-spacing: 0.06vw;
+  text-transform: uppercase;
+  padding: 1.2vh 3.5vw;
+  border-radius: 0.9vw;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+  min-width: 11vw;
+}
+
+/* Tombol ORA (Batal / Tidak Keluar) - Warna Hijau Tenang */
+.hh-exit-btn-no {
+  background: linear-gradient(180deg, #22c55e 0%, #15803d 100%);
+  border: 0.22vw solid #14532d;
+  color: #ffffff;
+  box-shadow:
+    0 0.5vh 1.2vh rgba(0, 0, 0, 0.35),
+    inset 0 0.15vh 0.3vh rgba(255, 255, 255, 0.6);
+}
+
+.hh-exit-btn-no:hover {
+  transform: scale(1.06);
+  filter: brightness(1.1);
+  box-shadow: 0 0.7vh 1.6vh rgba(0, 0, 0, 0.45);
+}
+
+.hh-exit-btn-no:active {
+  transform: scale(0.96);
+}
+
+/* Tombol IYO (Ya / Keluar & Reset) - Warna Merah Bahaya */
+.hh-exit-btn-yes {
+  background: linear-gradient(180deg, #ef4444 0%, #b91c1c 100%);
+  border: 0.22vw solid #7f1d1d;
+  color: #ffffff;
+  box-shadow:
+    0 0.5vh 1.2vh rgba(0, 0, 0, 0.35),
+    inset 0 0.15vh 0.3vh rgba(255, 255, 255, 0.5);
+}
+
+.hh-exit-btn-yes:hover {
+  transform: scale(1.06);
+  filter: brightness(1.1);
+  box-shadow: 0 0.7vh 1.6vh rgba(0, 0, 0, 0.45);
+}
+
+.hh-exit-btn-yes:active {
+  transform: scale(0.96);
+}
+
+@keyframes hh-exit-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes hh-exit-pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ==========================================================================
+   RESPONSIVE ZOOM-LOCK
+   ========================================================================== */
+@media screen and (min-width: 64em) and (max-width: 90em) {
+  .hh-exit-modal-card {
+    width: 44vw;
+  }
+}
+
+@media screen and (min-width: 90.063em) {
+  .hh-exit-modal-card {
+    width: 44vw;
+  }
+}
+
+@media screen and (max-width: 56.25em) and (orientation: landscape) and (pointer: coarse) {
+  .hh-exit-modal-card {
+    width: 56vw;
+    padding: 3vh 2.5vw;
+  }
+  .hh-exit-modal-title {
+    font-size: 2.2vw;
+  }
+  .hh-exit-modal-desc {
+    font-size: 1.5vw;
+  }
+  .hh-exit-modal-btn {
+    font-size: 1.4vw;
+    padding: 1vh 3vw;
+  }
+}

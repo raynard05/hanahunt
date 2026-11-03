@@ -1,0 +1,571 @@
+/* ==========================================================================
+   PANAHAN BABAK 1 PAGE STYLES - HANA HUNT
+   Rules (AIRULE.TXT):
+   1. Terpisah antara TSX dan CSS (panahan.css & page.tsx)
+   3-4. Responsif resolusi mobile landscape, laptop, monitor menggunakan vw/vh
+   5. Landscape only (jangan portrait)
+   6. DILARANG menggunakan satuan px untuk komponen (kecuali background)
+   11. Didalam folder /app/panahan/babak1
+   12. Selector unik berawalan .hh-panahan-*
+   16. ZOOM-LOCK & KONSISTENSI DEVICE
+   ========================================================================== */
+
+.hh-panahan-viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #0b1a0d;
+  background-image: url('/assets/babak1/bg.webp');
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  user-select: none;
+  font-family: var(--font-rubik), sans-serif;
+}
+
+/* ==========================================================================
+   AREA TARGET LINGKARAN SASARAN PANAHAN (TARGET ROW)
+   - Tepat di atas 6 lingkaran target pada bg.webp
+   ========================================================================== */
+.hh-panahan-targets-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.hh-panahan-target-slot {
+  position: absolute;
+  width: 7vw;
+  height: 7vw;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  pointer-events: auto;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Koordinat Presisi Masing-Masing Sasaran di bg.webp */
+.hh-panahan-target-slot:nth-child(1) { left: 20.10vw; top: 48.5vh; }
+.hh-panahan-target-slot:nth-child(2) { left: 32.27vw; top: 48.5vh; }
+.hh-panahan-target-slot:nth-child(3) { left: 44.48vw; top: 48.5vh; }
+.hh-panahan-target-slot:nth-child(4) { left: 56.72vw; top: 48.5vh; }
+.hh-panahan-target-slot:nth-child(5) { left: 68.96vw; top: 48.5vh; }
+.hh-panahan-target-slot:nth-child(6) { left: 81.04vw; top: 48.5vh; }
+
+.hh-panahan-target-slot:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.hh-panahan-target-slot.is-selected {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+/* Efek lingkaran glow seleksi */
+.hh-panahan-target-glow {
+  position: absolute;
+  inset: -0.3vw;
+  border-radius: 50%;
+  border: 0.28vw dashed #facc15;
+  box-shadow:
+    0 0 1.2vw rgba(250, 204, 21, 0.85),
+    inset 0 0 0.8vw rgba(250, 204, 21, 0.5);
+  animation: hh-target-rotate 6s linear infinite;
+  pointer-events: none;
+}
+
+.hh-panahan-target-aksara-wrap {
+  position: relative;
+  width: 72%;
+  height: 72%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.hh-panahan-target-aksara-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0.2vh 0.4vh rgba(0, 0, 0, 0.45));
+}
+
+@keyframes hh-target-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   GARIS PANCARAN WARNA / PATAH-PATAH DARI BUSUR KE TARGET
+   ========================================================================== */
+.hh-panahan-beam-svg {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 18;
+}
+
+.hh-panahan-beam-line {
+  stroke: #facc15;
+  stroke-width: 0.35vw;
+  stroke-dasharray: 0.8vw 0.5vw;
+  animation: hh-beam-flow 0.8s linear infinite;
+  filter: drop-shadow(0 0 0.6vw rgba(250, 204, 21, 0.85));
+}
+
+@keyframes hh-beam-flow {
+  from {
+    stroke-dashoffset: 1.3vw;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ==========================================================================
+   PANEL KONTROL BAWAH (BOTTOM CONTROL BAR)
+   - Show question di kiri
+   - Busur panah di tengah (before_manah / manah)
+   - Tombol "MANAH" di samping kanan busur
+   - Sesuai letak papan kayu krem bawah di bg.webp
+   ========================================================================== */
+.hh-panahan-bottom-panel {
+  position: absolute;
+  bottom: 4vh;
+  left: 11vw;
+  right: 11vw;
+  height: 22vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4vw;
+  box-sizing: border-box;
+  z-index: 25;
+}
+
+.hh-panahan-bottom-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5vw;
+}
+
+/* Kotak Ronde & Kesempatan Menjawab (Hearts) */
+.hh-panahan-round-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4vh;
+  background: linear-gradient(180deg, #3d240e 0%, #221306 100%);
+  border: 0.2vw solid #ca8a04;
+  border-radius: 0.9vw;
+  padding: 0.6vh 1.2vw;
+  box-shadow: 0 0.4vh 1vh rgba(0, 0, 0, 0.5);
+}
+
+.hh-panahan-round-text {
+  font-family: var(--font-rubik-one), Impact, sans-serif;
+  font-size: 0.9vw;
+  color: #fef08a;
+  letter-spacing: 0.05vw;
+}
+
+.hh-panahan-hearts {
+  display: flex;
+  align-items: center;
+  gap: 0.35vw;
+}
+
+.hh-panahan-heart {
+  font-size: 1.1vw;
+  color: #ef4444;
+  filter: drop-shadow(0 0.15vh 0.3vh rgba(0, 0, 0, 0.4));
+  transition: opacity 0.2s, filter 0.2s;
+}
+
+.hh-panahan-heart.is-empty {
+  color: #64748b;
+  opacity: 0.5;
+  filter: grayscale(1);
+}
+
+/* Bagian Tengah: Komponen Busur Panah */
+.hh-panahan-bow-center {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hh-panahan-bow-wheel {
+  position: relative;
+  width: 11.5vw;
+  height: 11.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.25s ease;
+  filter: drop-shadow(0 0.8vh 1.8vh rgba(0, 0, 0, 0.6));
+}
+
+.hh-panahan-bow-wheel.has-target {
+  filter: drop-shadow(0 0 1.2vw rgba(250, 204, 21, 0.65));
+}
+
+.hh-panahan-bow-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Sisi Kanan: Tombol "MANAH" */
+.hh-panahan-bottom-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.hh-panahan-btn-shoot {
+  position: relative;
+  background: linear-gradient(180deg, #63360b 0%, #452405 100%);
+  border: 0.3vw solid #2a1402;
+  border-radius: 1.1vw;
+  padding: 1.2vh 3vw;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0.6vh 1.4vh rgba(0, 0, 0, 0.55),
+    inset 0 0.2vh 0.4vh rgba(255, 255, 255, 0.35),
+    inset 0 -0.2vh 0.4vh rgba(0, 0, 0, 0.45);
+  transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+}
+
+.hh-panahan-btn-shoot:hover:not(:disabled) {
+  transform: scale(1.06);
+  filter: brightness(1.15);
+  box-shadow:
+    0 0.8vh 1.8vh rgba(0, 0, 0, 0.6),
+    0 0 1vw rgba(234, 179, 8, 0.35);
+}
+
+.hh-panahan-btn-shoot:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.hh-panahan-btn-shoot:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+}
+
+.hh-panahan-btn-shoot-text {
+  font-family: var(--font-rubik-one), Impact, sans-serif;
+  font-size: 1.6vw;
+  color: #facc15;
+  letter-spacing: 0.12vw;
+  text-transform: uppercase;
+  text-shadow:
+    -0.15vw -0.15vw 0 #200f02,
+     0.15vw -0.15vw 0 #200f02,
+    -0.15vw  0.15vw 0 #200f02,
+     0.15vw  0.15vw 0 #200f02,
+     0 0.3vh 0.6vh rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================================================
+   POPUP SOAL (SHOW QUESTION MODAL)
+   - Menggunakan font Plus Jakarta Sans (sesuai perintah panahan.txt)
+   ========================================================================== */
+.hh-panahan-question-modal-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(0.6vw);
+  -webkit-backdrop-filter: blur(0.6vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: hh-modal-fade 0.25s ease-out;
+}
+
+.hh-panahan-question-card {
+  width: 48vw;
+  max-width: 52vw;
+  background: linear-gradient(180deg, #fefae0 0%, #fef08a 100%);
+  border: 0.35vw solid #78350f;
+  border-radius: 1.6vw;
+  padding: 3.5vh 3vw 3vh 3vw;
+  box-sizing: border-box;
+  box-shadow:
+    0 1.2vh 3vh rgba(0, 0, 0, 0.7),
+    inset 0 0.3vh 0.6vh rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: hh-modal-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hh-panahan-question-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8vw;
+  margin-bottom: 2vh;
+}
+
+.hh-panahan-question-badge-icon {
+  width: 3.2vw;
+  height: 3.2vw;
+  object-fit: contain;
+}
+
+.hh-panahan-question-title {
+  font-family: var(--font-rubik-one), Impact, sans-serif;
+  font-size: 1.8vw;
+  color: #78350f;
+  letter-spacing: 0.05vw;
+}
+
+.hh-panahan-question-body {
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  font-size: 1.35vw;
+  font-weight: 700;
+  color: #451a03;
+  line-height: 1.5;
+  margin-bottom: 2vh;
+  padding: 0 1vw;
+}
+
+/* Badge Timer 3 Detik di dalam Pop Up Soal */
+.hh-panahan-modal-timer-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(120, 53, 15, 0.12);
+  border: 0.15vw solid #ca8a04;
+  border-radius: 999vw;
+  padding: 0.5vh 1.6vw;
+  margin-bottom: 2.2vh;
+}
+
+.hh-panahan-modal-timer-text {
+  font-family: var(--font-jakarta), sans-serif;
+  font-size: 1vw;
+  font-weight: 600;
+  color: #78350f;
+}
+
+.hh-panahan-modal-timer-text strong {
+  font-family: var(--font-rubik-one), Impact, sans-serif;
+  color: #b45309;
+  font-size: 1.15vw;
+}
+
+.hh-panahan-question-btn-close {
+  background: linear-gradient(180deg, #22c55e 0%, #15803d 100%);
+  border: 0.22vw solid #14532d;
+  border-radius: 0.8vw;
+  padding: 1vh 3.5vw;
+  cursor: pointer;
+  font-family: var(--font-rubik-one), Impact, sans-serif;
+  font-size: 1.15vw;
+  color: #ffffff;
+  letter-spacing: 0.06vw;
+  text-transform: uppercase;
+  box-shadow:
+    0 0.5vh 1vh rgba(0, 0, 0, 0.3),
+    inset 0 0.15vh 0.3vh rgba(255, 255, 255, 0.6);
+  transition: transform 0.15s ease;
+}
+
+.hh-panahan-question-btn-close:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* ==========================================================================
+   POPUP STATUS HASIL (BENAR, SALAH, WAKTUNYAHABIS)
+   - Menggunakan aset dari /assets/popup/
+   ========================================================================== */
+.hh-panahan-status-popup-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 120;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(0.8vw);
+  -webkit-backdrop-filter: blur(0.8vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: hh-modal-fade 0.25s ease-out;
+}
+
+.hh-panahan-status-popup-img-wrap {
+  position: relative;
+  width: 48vw;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: hh-popup-stamp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 1.2vh 2.5vh rgba(0, 0, 0, 0.8));
+}
+
+.hh-panahan-status-popup-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hh-panahan-status-popup-btn {
+  margin-top: 2vh;
+  background: linear-gradient(180deg, #facc15 0%, #ca8a04 100%);
+  border: 0.25vw solid #713f12;
+  border-radius: 0.9vw;
+  padding: 1.2vh 3.5vw;
+  cursor: pointer;
+  font-family: var(--font-rubik-one), Impact, sans-serif;
+  font-size: 1.35vw;
+  color: #3f1d0b;
+  letter-spacing: 0.08vw;
+  text-transform: uppercase;
+  box-shadow:
+    0 0.6vh 1.4vh rgba(0, 0, 0, 0.45),
+    inset 0 0.15vh 0.3vh rgba(255, 255, 255, 0.8);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.hh-panahan-status-popup-btn:hover {
+  transform: scale(1.06);
+  filter: brightness(1.1);
+}
+
+@keyframes hh-modal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes hh-modal-pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes hh-popup-stamp {
+  0% { transform: scale(0.6) rotate(-4deg); opacity: 0; }
+  70% { transform: scale(1.08) rotate(1deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* ==========================================================================
+   RESPONSIVE ZOOM-LOCK & DEVICE CONSISTENCY (AIRULE.TXT RULE 16)
+   - Tampilan (look) pada laptop kecil, laptop sedang, laptop besar, dan monitor
+     HARUS SAMA PERSIS dan ukurannya terkunci secara proporsional.
+   - Saat browser di-zoom in (110%, 125%, 150%, 175%) atau di-zoom out, komponen
+     TIDAK BOLEH berpindah tempat, bergeser dari background, atau membesar/meloncat aneh.
+   - Media query mobile landscape WAJIB dilindungi guard (pointer: coarse).
+   - Nilai breakpoint untuk laptop sedang dan monitor diseragamkan nilai proporsi vw/vh-nya.
+   ========================================================================== */
+
+/* Laptop Sedang (1024px - 1366px pada 100% zoom) - Terkunci Seragam */
+@media screen and (min-width: 64em) and (max-width: 90em) {
+  .hh-panahan-target-slot {
+    width: 7vw;
+    height: 7vw;
+  }
+  .hh-panahan-bow-wheel {
+    width: 11.5vw;
+    height: 11.5vw;
+  }
+  .hh-panahan-question-card {
+    width: 48vw;
+    max-width: 52vw;
+  }
+  .hh-panahan-question-body {
+    font-size: 1.35vw;
+  }
+  .hh-panahan-btn-shoot-text {
+    font-size: 1.6vw;
+  }
+  .hh-panahan-status-popup-img-wrap {
+    width: 48vw;
+    height: 60vh;
+  }
+}
+
+/* Monitor / Layar Besar (> 1366px / 90em) - Terkunci Seragam */
+@media screen and (min-width: 90.063em) {
+  .hh-panahan-target-slot {
+    width: 7vw;
+    height: 7vw;
+  }
+  .hh-panahan-bow-wheel {
+    width: 11.5vw;
+    height: 11.5vw;
+  }
+  .hh-panahan-question-card {
+    width: 48vw;
+    max-width: 52vw;
+  }
+  .hh-panahan-question-body {
+    font-size: 1.35vw;
+  }
+  .hh-panahan-btn-shoot-text {
+    font-size: 1.6vw;
+  }
+  .hh-panahan-status-popup-img-wrap {
+    width: 48vw;
+    height: 60vh;
+  }
+}
+
+/* Mobile Landscape Khusus Layar Sentuh Asli (pointer: coarse) */
+@media screen and (max-width: 56.25em) and (orientation: landscape) and (pointer: coarse) {
+  .hh-panahan-target-slot {
+    width: 7vw;
+    height: 7vw;
+  }
+  .hh-panahan-bow-wheel {
+    width: 12vw;
+    height: 12vw;
+  }
+  .hh-panahan-btn-shoot-text {
+    font-size: 1.8vw;
+  }
+  .hh-panahan-question-card {
+    width: 58vw;
+    max-width: 62vw;
+  }
+  .hh-panahan-question-body {
+    font-size: 1.6vw;
+  }
+}

@@ -1,0 +1,141 @@
+/* ==========================================================================
+   TOPBAR COMPONENT STYLES - HANA HUNT
+   Rules (AIRULE.TXT):
+   - Background panel hijau seperti frame screenshot (Frame 52)
+   - Home di kiri, Timer & Score di tengah, AudioToggle di kanan
+   - Satuan vh / vw ketat untuk zoom-lock
+   ========================================================================== */
+
+.hh-topbar-root {
+  position: absolute;
+  top: 0;
+  left: 3vw;
+  right: 3vw;
+  height: 13.8vh; /* Naik 15% dari 12vh */
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(180deg, #2f5424 0%, #1e3a17 100%);
+  border: 0.25vw solid #1b3114;
+  border-top: none; /* Menempel rapat dengan batas atas layar */
+  border-radius: 0 0 1.6vw 1.6vw;
+  padding: 0 1.5vw;
+  box-sizing: border-box;
+  box-shadow:
+    0 0.8vh 1.8vh rgba(0, 0, 0, 0.55),
+    inset 0 0.2vh 0.4vh rgba(255, 255, 255, 0.35),
+    inset 0 -0.2vh 0.4vh rgba(0, 0, 0, 0.4);
+  user-select: none;
+}
+
+/* Sisi Kiri - Tombol Home */
+.hh-topbar-left {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.hh-topbar-home-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.4vw;
+  height: 5.4vw;
+  min-width: 5.4vw;
+  min-height: 5.4vw;
+  transition: transform 0.18s ease, filter 0.18s ease;
+  filter: drop-shadow(0 0.5vh 1vh rgba(0, 0, 0, 0.5));
+}
+
+.hh-topbar-home-btn:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0.7vh 1.4vh rgba(0, 0, 0, 0.6)) brightness(1.1);
+}
+
+.hh-topbar-home-btn:active {
+  transform: scale(0.94);
+}
+
+.hh-topbar-home-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Bagian Tengah - Timer & Skor Berdampingan */
+.hh-topbar-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5vw;
+  flex: 1 1 auto;
+}
+
+/* Sisi Kanan - Audio Toggle */
+.hh-topbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+}
+
+.hh-topbar-audio-btn {
+  width: 5.4vw !important;
+  height: 5.4vw !important;
+  min-width: 5.4vw !important;
+  min-height: 5.4vw !important;
+  filter: drop-shadow(0 0.5vh 1vh rgba(0, 0, 0, 0.5));
+}
+
+/* ==========================================================================
+   RESPONSIVE ZOOM-LOCK (AIRULE.TXT RULE 16)
+   ========================================================================== */
+@media screen and (min-width: 64em) and (max-width: 90em) {
+  .hh-topbar-root {
+    top: 0;
+    height: 13.8vh;
+    border-radius: 0 0 1.6vw 1.6vw;
+  }
+  .hh-topbar-home-btn,
+  .hh-topbar-audio-btn {
+    width: 5.4vw !important;
+    height: 5.4vw !important;
+  }
+}
+
+@media screen and (min-width: 90.063em) {
+  .hh-topbar-root {
+    top: 0;
+    height: 13.8vh;
+    border-radius: 0 0 1.6vw 1.6vw;
+  }
+  .hh-topbar-home-btn,
+  .hh-topbar-audio-btn {
+    width: 5.4vw !important;
+    height: 5.4vw !important;
+  }
+}
+
+/* Mobile Landscape Khusus Layar Sentuh / Handphone */
+@media screen and (max-width: 56.25em) and (orientation: landscape) {
+  .hh-topbar-root {
+    height: 13.8vh;
+    top: 0;
+    left: 2.5vw;
+    right: 2.5vw;
+    border-radius: 0 0 1.8vw 1.8vw;
+    padding: 0 1.2vw;
+  }
+  .hh-topbar-home-btn,
+  .hh-topbar-audio-btn {
+    width: 4.6vw !important;
+    height: 4.6vw !important;
+    min-width: 4.6vw !important;
+    min-height: 4.6vw !important;
+  }
+}

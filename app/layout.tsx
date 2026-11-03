@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Rubik, Rubik_Mono_One } from "next/font/google";
+import { Rubik, Rubik_Mono_One, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
 const rubik = Rubik({
@@ -12,6 +12,12 @@ const rubikOne = Rubik_Mono_One({
   variable: "--font-rubik-one",
   subsets: ["latin"],
   weight: ["400"],
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
 });
 
 import { CloudTransitionProvider } from "@/components/cloud/CloudTransitionProvider";
@@ -38,7 +44,7 @@ export default function RootLayout({
   return (
     <html
       lang="jv"
-      className={`${rubik.variable} ${rubikOne.variable} h-full antialiased`}
+      className={`${rubik.variable} ${rubikOne.variable} ${plusJakartaSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <ScreenGuard />
