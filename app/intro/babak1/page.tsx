@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import AudioToggle from "@/components/audio/AudioToggle";
 import FullscreenPrompt from "@/components/fullscreen/FullscreenPrompt";
+import FallingLeaves from "@/components/leaves/FallingLeaves";
 import "./intro-babak1.css";
 
 export default function IntroBabak1Page() {
@@ -128,6 +129,9 @@ export default function IntroBabak1Page() {
           className="hh-intro-logo-img"
         />
       </div>
+
+      {/* Animasi Daun Berjatuhan dari Atas ke Bawah */}
+      <FallingLeaves />
     </main>
   );
 }

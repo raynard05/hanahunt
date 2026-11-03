@@ -216,8 +216,8 @@
   z-index: 25;
   width: 17vw;
   height: 17vw;
-  min-width: 17vw;
-  min-height: 17vw;
+  min-width: 2vw;
+  min-height: 2vw;
   pointer-events: none;
   filter: drop-shadow(0 0.8vh 1.6vh rgba(0, 0, 0, 0.65));
   transition: transform 0.25s ease;
@@ -351,8 +351,8 @@
   }
 
   .hh-intro-logo-wrap {
-    width: 8vw;
-    height: 8vw;
+    width: 15vw;
+    height: 15vw;
     bottom: 0.5vh;
     right: 0.8vw;
   }

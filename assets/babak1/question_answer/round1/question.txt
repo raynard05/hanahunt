@@ -1,0 +1,3 @@
+Saka aksara ing ngisor iki, temokna endi sing kalebu Aksara Murda  “Na” nganggo panah iki!
+
+jawaban = 1.png
